@@ -11,7 +11,7 @@ export async function POST(req, res) {
 
     if (!payload) return NextResponse.json({success: false, response: "Invalid token"}, {status: 500});
 
-    const cookieHeader = tokenCookie(payload);
+    const cookieHeader = await tokenCookie(payload);
 
     return NextResponse.json({success: true, response: payload}, {status: 200, headers: cookieHeader});
 }
