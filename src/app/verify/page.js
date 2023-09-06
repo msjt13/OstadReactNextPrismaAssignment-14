@@ -13,25 +13,28 @@ const Page = () => {
 
     console.log("token: ", token);
 
-    useEffect(async () => {
-        const response = await fetch('/api/verify', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({token})
-        });
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch('/api/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({token})
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if(data.success === true) {
-            console.log("success");
-            router.replace('/dashboard');
+            if(data.success === true) {
+                router.replace('/dashboard');
+            }
+            else {
+                router.replace('/register');
+            }
         }
-        else {
 
-            router.replace('/register');
-        }
+        fetchData();
+
     }, []);
 
     return (
