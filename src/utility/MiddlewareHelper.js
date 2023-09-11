@@ -3,7 +3,7 @@ import {verifyToken} from "@/utility/JWTHelper";
 export async function checkCookieAuth(req) {
 
   const token_cookie = req.cookies.get(process.env.COOKIE_NAME);
-  const token = token_cookie['value'];
+  const token = token_cookie ? token_cookie['value'] : null;
   console.log('token: ', token)
 
   if (!token) return false;

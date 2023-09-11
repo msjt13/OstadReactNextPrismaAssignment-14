@@ -56,7 +56,8 @@ const Page = () => {
                             {
                                 isError === false && (
                                     <div className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-                                        <span className="font-medium">Verify you email!</span> An email has been sent to your email. Please verify your email address.
+                                        <span className="font-medium">Verify you email!</span> <br/>
+                                        An email has been sent to your email. Please verify your email address.
                                     </div>
                                 )
                             }
