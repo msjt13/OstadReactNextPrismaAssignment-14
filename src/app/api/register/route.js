@@ -1,6 +1,7 @@
 import {NextResponse} from 'next/server'
 import {createToken} from "@/utility/JWTHelper";
 import {sendEmail} from "@/utility/MailHelper";
+import {absoluteUrl} from "@/utility/utils";
 
 export async function POST(req, res) {
 
@@ -16,10 +17,11 @@ export async function POST(req, res) {
     };
 
     const token = await createToken(payload);
+    const verify_url = absoluteUrl('/verify?token=' + token,);
 
     const subject = "Verify your email address";
-    const text = `Please click the link below to verify your email address. \n\n http://${host}/verify?token=${token}`;
-    const email_result = sendEmail(email, subject, text);
+    const text = `Please click the link below to verify your email address. \n\n ${verify_url}`;
+    const email_result = await sendEmail(email, subject, text);
 
     return NextResponse.json({success: true, token: token, email: email_result}, {status: 200});
 }
