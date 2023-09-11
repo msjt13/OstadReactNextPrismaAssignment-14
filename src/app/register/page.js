@@ -34,13 +34,14 @@ const Page = () => {
         const data = await response.json();
 
         if (data.success === true) {
+            setIsLoading(false);
             setIsError(false);
         }
         else {
+            setIsLoading(false);
             setIsError(true);
         }
 
-        setIsLoading(false);
     }
 
     return (
