@@ -32,6 +32,7 @@ const Page = () => {
             body: JSON.stringify({email, password})
         });
         const data = await response.json();
+        console.log('data', data);
 
         if (data.success === true) {
             setIsLoading(false);
